@@ -59,6 +59,18 @@ void Graph::readGraph(istream & in)
     int b = edges[i].second;
     vMatrix[a][b] = 1;
   }
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      if (vMatrix[i][j] != 0 || i == j) {
+      	continue;
+      }
+      if (vLabel[i].compare(1, l - 2, vLabel[j], 0, l - 2) == 0) {
+      	// add "imaginary" edge
+      	vMatrix[i][j] = 2;
+      }
+    }
+  }
 }
 
 int Graph::addVLabel(string label)
@@ -78,12 +90,12 @@ int Graph::getN()
   return n;
 }
 
-int LineGraph::getL()
+int Graph::getL()
 {
   return l;
 }
 
-int LineGraph::getP()
+int Graph::getP()
 {
   return perfect;
 }
