@@ -7,6 +7,7 @@ class LineGraph
 {
   int n;
   int l;
+  int perfect;
   std::string * vLabel;
   int ** vMatrix;
 
@@ -18,8 +19,11 @@ public:
   ~LineGraph();
 
   int getN();
+  int getL();
+  int getP();
   int getDistance(int a, int b);
   std::string getLabel(int a);
+  int rate(std::string in);
 
   void print();
 };

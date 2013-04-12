@@ -33,7 +33,7 @@ void LineGraph::readGraph(istream & in)
   int ignore;
   string line;
   list<string> lst;
-  in >> ignore >> l >> ignore;
+  in >> perfect >> l >> ignore;
   while(in >> line)
     lst.push_back(line);
 
@@ -76,6 +76,16 @@ int LineGraph::getN()
   return n;
 }
 
+int LineGraph::getL()
+{
+  return l;
+}
+
+int LineGraph::getP()
+{
+  return perfect;
+}
+
 int LineGraph::getDistance(int a, int b)
 {
   if(0 <= a && a < n && 0 <= b && b < n)
@@ -88,6 +98,11 @@ string LineGraph::getLabel(int a)
   if(0 <= a && a < n)
     return vLabel[a];
   throw "Vertex out of bounds";
+}
+
+int LineGraph::rate(string in)
+{
+  return perfect - in.length();
 }
 
 void LineGraph::print()
