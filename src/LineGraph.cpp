@@ -86,6 +86,14 @@ int LineGraph::getP()
   return perfect;
 }
 
+void LineGraph::setDistance(int a, int b, int d)
+{
+  if(0 <= a && a < n && 0 <= b && b < n)
+    vMatrix[a][b] = d;
+  else
+    throw "Vertex out of bounds";
+}
+
 int LineGraph::getDistance(int a, int b)
 {
   if(0 <= a && a < n && 0 <= b && b < n)

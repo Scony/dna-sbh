@@ -21,6 +21,7 @@ public:
   int getN();
   int getL();
   int getP();
+  void setDistance(int a, int b, int d);
   int getDistance(int a, int b);
   std::string getLabel(int a);
   int rate(std::string in);

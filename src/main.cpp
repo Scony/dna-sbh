@@ -4,6 +4,7 @@
 #include "LineGraph.hpp"
 #include "Graph.hpp"
 #include "HillClimber.hpp"
+#include "TopSort.hpp"
 
 using namespace std;
 
@@ -15,6 +16,10 @@ int main()
   //g.print();
   HillClimber hc(&g);
   pair<string,int> result= hc.run();
+  cout << result.first << " " << result.first.length() << " " << g.rate(result.first)
+       << " " << result.second << " of " << g.getN() << endl;
+  TopSort ts(&g);
+  result= ts.run();
   cout << result.first << " " << result.first.length() << " " << g.rate(result.first)
        << " " << result.second << " of " << g.getN() << endl;
 
