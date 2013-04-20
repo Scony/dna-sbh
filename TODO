@@ -1,2 +1,3 @@
-+ general algorithm = a'la topologic sort
-+ simple heuristic (hill climber)
++ negative err only
++ positive err only
++ Makefile fix (separated target for each alg)

@@ -1,20 +1,20 @@
-#include "HillClimber.hpp"
+#include "TwoWayClimber.hpp"
 
 #include <list>
 #include <climits>
 
 using namespace std;
 
-HillClimber::HillClimber(LineGraph * graph)
+TwoWayClimber::TwoWayClimber(LineGraph * graph)
 {
   this->graph = graph;
 }
 
-HillClimber::~HillClimber()
+TwoWayClimber::~TwoWayClimber()
 {
 }
 
-pair<string,int> HillClimber::startFrom(int a)
+pair<string,int> TwoWayClimber::startFrom(int a)
 {
   int n = graph->getN();
   int l = graph->getL();
@@ -25,24 +25,34 @@ pair<string,int> HillClimber::startFrom(int a)
     hash[i] = false;
 
   int visited = 0;
-  int visit = a;
-  string result = graph->getLabel(visit);
+  int first = a;
+  int last = a;
+  string result = graph->getLabel(first);
   while(true)
     {
       visited++;
-      hash[visit] = true;
+      hash[first] = hash[last] = true;
 
-      int nxt = -1;
       int dst = INT_MAX;
+      int nxt = -1;
+      bool back;
       for(int i = 0; i < n; i++)
 	{
-	  int d = graph->getDistance(visit,i);
+	  // forward
+	  int d = graph->getDistance(last,i);
 	  if(d > 0 && !hash[i] && d < dst)
 	    {
-	      nxt = i;
 	      dst = d;
-	      if(d == 1)	// better d is not possible
-		break;
+	      nxt = i;
+	      back = false;
+	    }
+	  // backward
+	  d = graph->getDistance(i,first);
+	  if(d > 0 && !hash[i] && d < dst)
+	    {
+	      dst = d;
+	      nxt = i;
+	      back = true;
 	    }
 	}
 
@@ -52,14 +62,22 @@ pair<string,int> HillClimber::startFrom(int a)
       if(result.length() + dst > p) // len(out) > perfect len(out)
 	break;
 
-      visit = nxt;
-      result += graph->getLabel(nxt).substr(l-dst);
+      if(back)
+	{
+	  first = nxt;
+	  result = graph->getLabel(nxt).substr(0,dst) + result;
+	}
+      else
+	{
+	  last = nxt;
+	  result += graph->getLabel(nxt).substr(l-dst);
+	}
     }
 
   return pair<string,int>(result,visited);
 }
 
-pair<string,int> HillClimber::run()
+pair<string,int> TwoWayClimber::run()
 {
   string result = "";
   pair<int,int> best = pair<int,int>(1,INT_MAX);

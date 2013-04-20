@@ -18,9 +18,9 @@ public:
   LineGraph(std::string fName);
   ~LineGraph();
 
-  int getN();
-  int getL();
-  int getP();
+  int getN();			// |S|
+  int getL();			// len(S_i)
+  int getP();			// perfect len(out)
   void setDistance(int a, int b, int d);
   int getDistance(int a, int b);
   std::string getLabel(int a);
