@@ -6,3 +6,6 @@ syntax: glob
 .#*
 #*#
 *.orig
+*.aux
+*.log
+*.pdf
