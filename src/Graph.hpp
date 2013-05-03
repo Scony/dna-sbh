@@ -10,8 +10,11 @@ class Graph
 {
   int nEdges;
   int n;
+  int currentN;
   int l;
   int perfect;
+  int errors;
+
   std::vector<std::string> vLabel;
   std::map<std::string, int> vLabelMap;
   int ** vMatrix;
@@ -23,11 +26,14 @@ public:
   ~Graph();
 
   int getN();
+  int getCurrentN();
   int getL();
   int getP();
   int getDistance(int a, int b);
   std::string getLabel(int a);
-  int addVLabel(std::string label);
+  int getIndex(std::string label);
+  int addVertex(std::string label); // also returns index of vertex
+  void addEdge(int a, int b, int weight);
 
   void print();
 };
