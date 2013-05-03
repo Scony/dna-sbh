@@ -51,8 +51,6 @@ void Graph::readGraph(istream & in)
   }
 
   n = vLabel.size();
-  cout << "n = " << n << endl;
-  cout << "currentN = " << currentN << endl;
 
   int vMatrixSize = n;
   if (errors < 0) {
