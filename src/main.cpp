@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <utility>
 
 #include "LineGraph.hpp"
@@ -10,12 +11,25 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char ** argv)
 {
   ios_base::sync_with_stdio(0);
 
-  LineGraph lg(cin);
-  Graph g(cin);
+  if(argc < 2)
+    {
+      cout << "Type file name\n";
+      return 0;
+    }
+
+
+  ifstream in1(argv[1]);
+  ifstream in2(argv[1]);
+
+  LineGraph lg(in1);
+  Graph g(in2);
+
+  in1.close();
+  in2.close();
 
   TwoWayClimber twc(&lg);
   Negativer n(&g);

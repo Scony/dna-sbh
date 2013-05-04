@@ -1,5 +1,6 @@
-+ negative err only
 + positive err only
-+ Makefile fix (separated target for each alg)
-+ Negativer::run
-+ findEuler~
+
+FIXES:
++ check euler finding works well
++ add spectrum usage in Negativer::run
++ fix infinite loop problem in Negativer::run

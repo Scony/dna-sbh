@@ -16,7 +16,7 @@ Negativer::~Negativer()
 
 pair<string,int> Negativer::run()
 {
-  pair<string,int> fail = pair<string,int>("",0);
+  pair<string,int> fail = pair<string,int>("FAIL",-1);
 
   int n = graph->getCurrentN();
   int in[n];
@@ -51,6 +51,7 @@ pair<string,int> Negativer::run()
 
 	  while(in[visit] != out[visit])
 	    {
+	      // cout << ":(" << endl;	 // TODO: prevent infinite loop
 	      if(in[visit] > out[visit]) // endouble out(s)
 		{
 		  list<pair<int,list<int> > > bfs;
@@ -152,7 +153,9 @@ pair<string,int> Negativer::run()
       return fail;
     }
 
-  // finally find euler
+  // printInOut();
+
+  // finally find euler path
 
   int start = -1;
   for(int i = 0; i < n; i++)	// look for entry point IN/OUT = 0/1
@@ -170,7 +173,7 @@ pair<string,int> Negativer::run()
 
   exploration.push(start);
 
-  while(!exploration.empty())
+  while(!exploration.empty())	// TODO: is this euler-finder works well ?
     {
       int visit = exploration.top();
       int neighbour = -1;
@@ -197,11 +200,14 @@ pair<string,int> Negativer::run()
   string seq = "";
   while(!backtrack.empty())
     {
-      // seq += graph->getLabel(backtrack.top());
+      if(seq == "")
+	seq = graph->getLabel(backtrack.top());
+      else
+	seq += graph->getLabel(backtrack.top()).substr(graph->getLabel(backtrack.top()).length()-1);
       backtrack.pop();
     }
 
-  pair<string,int> result = pair<string,int>(seq,-1);
+  pair<string,int> result = pair<string,int>(seq,/*TODO: usage of spectrum*/-1);
 
   return result;
 }
@@ -251,7 +257,7 @@ void Negativer::printInOut()
 	  out += graph->getDistance(i,j);
 	  in += graph->getDistance(j,i);
 	}
-      if(in!=out)
+      if(in != out)
 	cout << i << " :: " << in << " / " << out << endl;
     }
 }
