@@ -13,7 +13,7 @@ class Negativer
 public:
   Negativer(Graph * graph);
   ~Negativer();
-  // std::pair<std::string,int> run();
+  std::pair<std::string,int> run();
   int countDisjoints();
   void printInOut();
 };

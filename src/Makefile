@@ -1,5 +1,5 @@
 TARGET = a.out
-SOURCES = Graph.cpp HillClimber.cpp LineGraph.cpp TopSort.cpp TwoWayClimber.cpp
+SOURCES = Graph.cpp HillClimber.cpp LineGraph.cpp TopSort.cpp TwoWayClimber.cpp Negativer.cpp
 HEADERS = $(SOURCES:.cpp=.hpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 FLAGS =

@@ -14,25 +14,19 @@ int main()
 {
   ios_base::sync_with_stdio(0);
 
-  // LineGraph g(cin);
-  // HillClimber hc(&g);
-  // TwoWayClimber twc(&g);
-  // pair<string,int> result= hc.run();
-  // cout << result.first << " " << result.first.length() << " " << g.rate(result.first)
-  //      << " " << result.second << " of " << g.getN() << endl;
-  // result= twc.run();
-  // cout << result.first << " " << result.first.length() << " " << g.rate(result.first)
-  //      << " " << result.second << " of " << g.getN() << endl;
-  // TopSort ts(&g);
-  // result= ts.run();
-  // cout << result.first << " " << result.first.length() << " " << g.rate(result.first)
-  //      << " " << result.second << " of " << g.getN() << endl;
-  // cout << "---------------------------------------------------------\n";
-
+  LineGraph lg(cin);
   Graph g(cin);
-  // g.print();
+
+  TwoWayClimber twc(&lg);
   Negativer n(&g);
-  cout << n.countDisjoints() << endl;
-  n.printInOut();
+
+  pair<string,int> result = twc.run();
+  cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
+       << " " << result.second << " of " << lg.getN() << endl;
+  result = n.run();
+  cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
+       << " " << result.second << " of " << lg.getN() << endl;
+  cout << "---------------------------------------------------------\n";
+
   return 0;
 }

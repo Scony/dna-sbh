@@ -1,3 +1,5 @@
 + negative err only
 + positive err only
 + Makefile fix (separated target for each alg)
++ Negativer::run
++ findEuler~

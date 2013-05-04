@@ -30,6 +30,7 @@ public:
   int getL();
   int getP();
   int getDistance(int a, int b);
+  void setDistance(int a, int b, int d);
   std::string getLabel(int a);
   int getIndex(std::string label);
   int addVertex(std::string label); // also returns index of vertex

@@ -98,7 +98,7 @@ void Graph::addEdge(int a, int b, int weight)
   if (0 <= a && a < currentN && 0 <= b && b < currentN) {
     vMatrix[a][b] = weight;
   } else {
-    throw runtime_error("Vertex out of bounds");
+    throw runtime_error("Vertex out of bounds in addEdge");
   }
 }
 
@@ -126,14 +126,22 @@ int Graph::getDistance(int a, int b)
 {
   if(0 <= a && a < currentN && 0 <= b && b < currentN)
     return vMatrix[a][b];
-  throw runtime_error("Vertex out of bounds");
+  throw runtime_error("Vertex out of bounds in getDistance");
+}
+
+void Graph::setDistance(int a, int b, int d)
+{
+  if(0 <= a && a < currentN && 0 <= b && b < currentN)
+    vMatrix[a][b] = d;
+  else
+    throw runtime_error("Vertex out of bounds in setDistance");
 }
 
 string Graph::getLabel(int a)
 {
   if(0 <= a && a < currentN)
     return vLabel[a];
-  throw runtime_error("Vertex out of bounds");
+  throw runtime_error("Vertex out of bounds in getLabel");
 }
 
 int Graph::getIndex(string label)
