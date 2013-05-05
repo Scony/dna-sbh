@@ -5,6 +5,7 @@
 #include <list>
 #include <vector>
 #include <map>
+#include <set>
 #include <stdexcept>
 
 using namespace std;
@@ -39,7 +40,6 @@ void Graph::readGraph(istream & in)
     lst.push_back(line);
 
   nEdges = lst.size();
-  vector< pair<int, int> > edges;
 
   currentN = 0;
   for (list<string>::iterator i = lst.begin(); i != lst.end(); i++) {
@@ -47,7 +47,7 @@ void Graph::readGraph(istream & in)
     string vLabel2 = i->substr(1, l);
     int vIndex1 = addVertex(vLabel1);
     int vIndex2 = addVertex(vLabel2);
-    edges.push_back(make_pair(vIndex1, vIndex2));
+    edges.insert(make_pair(vIndex1, vIndex2));
   }
 
   n = vLabel.size();
@@ -62,9 +62,9 @@ void Graph::readGraph(istream & in)
   for(int i = 0; i < vMatrixSize; i++)
     vMatrix[i] = new int[vMatrixSize](); // 0-initialized
 
-  for (int i = 0; i < nEdges; i++) {
-    int a = edges[i].first;
-    int b = edges[i].second;
+  for (set< pair<int, int> >::iterator i = edges.begin(); i != edges.end(); i++) {
+    int a = i->first;
+    int b = i->second;
     addEdge(a, b, 1);
   }
 
@@ -152,6 +152,15 @@ int Graph::getIndex(string label)
     return it->second;
   }
   return -1;
+}
+
+bool Graph::inOriginal(int a, int b)
+{
+  return edges.count(make_pair(a, b)) == 1;
+}
+void Graph::originalPop(int a, int b)
+{
+  edges.erase(make_pair(a, b));
 }
 
 void Graph::print()

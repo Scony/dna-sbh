@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <set>
 #include <string>
 
 class Graph
@@ -18,6 +19,7 @@ class Graph
   std::vector<std::string> vLabel;
   std::map<std::string, int> vLabelMap;
   int ** vMatrix;
+  std::set< std::pair<int, int> > edges;
 
   void readGraph(std::istream & in);
 public:
@@ -35,6 +37,8 @@ public:
   int getIndex(std::string label);
   int addVertex(std::string label); // also returns index of vertex
   void addEdge(int a, int b, int weight);
+  bool inOriginal(int a, int b);
+  void originalPop(int a, int b);
 
   void print();
 };

@@ -156,8 +156,9 @@ pair<string,int> Negativer::run()
   else				// merging way
     {
       int l = graph->getL();
+      n = graph->getCurrentN();
       for (int k = 2; k <= 5; k++) {
-	n = graph->getCurrentN();
+	//n = graph->getCurrentN();
       	for (int i = 0; i < n; i++) {
     	  for (int j = 0; j < n; j++) {
       	    if (i == j || graph->getDistance(i, j)) {
@@ -168,7 +169,7 @@ pair<string,int> Negativer::run()
       	      for (int m = 1; m <= k - 2; m++) {
       	      	string newLabel = graph->getLabel(i).substr(m, l - m) +
       	      	                  graph->getLabel(j).substr(k - 1, m);
-      	      	cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
+      	      	//cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
       	      	graph->addVertex(newLabel);
       	      }
       	    }
@@ -202,7 +203,9 @@ pair<string,int> Negativer::run()
       //}
       int newNDisjoints = countDisjoints();
       cout << "nDisjoints before/after: " << nDisjoints  << "/" << newNDisjoints << endl;
-      return fail;
+      cout << "currentN = " << graph->getCurrentN() << endl;
+      //return fail;
+      //return run();
     }
 
   // printInOut();
@@ -249,15 +252,26 @@ pair<string,int> Negativer::run()
 	}
     }
 
+  int perfect = graph->getP();
+
   string seq = "";
-  int usage = backtrack.size() - 1;
+  int usage = 0;
+  int prev;
   while(!backtrack.empty())
     {
-      if(seq == "")
+      if(seq == "") {
 	seq = graph->getLabel(backtrack.top());
-      else
+      } else {
 	seq += graph->getLabel(backtrack.top()).substr(graph->getLabel(backtrack.top()).length()-1);
+      	if (graph->inOriginal(prev, backtrack.top())) {
+      	  usage++;
+      	  graph->originalPop(prev, backtrack.top());
+      	}
+      }
+      prev = backtrack.top();
       backtrack.pop();
+      if (seq.size() == perfect)
+      	break;
     }
 
   pair<string,int> result = pair<string,int>(seq,usage);
