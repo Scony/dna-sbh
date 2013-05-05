@@ -22,14 +22,23 @@
 
 \subsection{Problem 3: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi i pozytywnymi}      %% fix a bit
 
-Dla przypadku ogólnego przygotowano prosty algorytm zachłanny. Problem
-zamodelowano w postaci grafu Łysowa, w którym każdy wierzchołek
-odpowiada jednemu słowu ze spektrum. Wagi krawędzi odpowiadają
-przesunięciu etykiet względem siebie. W każdym kroku podążamy krawędzią
-o najmniejszej wadze.
+Dla przypadku ogólnego przygotowaliśmy prosty algorytm zachłanny. Problem zamodelowaliśmy w postaci grafu Łysowa,
+w którym każdy wierzchołek odpowiada jednemu słowu ze spektrum. Wagi krawędzi odpowiadają przesunięciu etykiet
+względem siebie.
 
-Do algorytmu wprowadzono następnie ulepszenie. W drugiej wersji
-algorytmu istnieje możliwość rozszerzania ścieżki z obu stron.
+Algorytm rozpoczyna się w zadanym wierzchołku. W każdym kroku wybieramy najbliższy nieodwiedzony wierzchołek w stosunku
+do poprzednio odwiedzonego. Rzecz jasna algorytm działa dopóki wyprodukowana sekwencja nie przekroczy długością docelowej
+lub dopóki nie odwiedzimy wszystkich wierzchołków.
+
+Z racji na zadziwiająco dobre wyniki postanowiliśmy z algorytmu wycisnąć jeszcze więcej. W toku optymalizacji powyższe
+przeszukiwanie jednokierunkowe wzbogaciliśmy o dodatkowy kierunek. Postanowiliśmy rozważyć nie tylko następniki ostatnio
+odwiedzonego wierzchołka (ogona łańcucha Hamiltona), lecz także poprzedniki głowy łańcucha Hamiltona. Tak oto obecnie
+algorytm jest niejako rozszerzającym się łańcuchem Hamiltona, przy czym rozszerzanie następuje od głowy oraz od ogona
+wybierając najkrótszą krawędź niezależnie od strony. Co więcej algorytm uruchamiany jest oddzielnie dla każdego
+wierzchołka w roli startowego, po czym wybierany jest najlepszy ze zbioru wyników.
+
+Złożoność czasowa samego algorytmu jest oczywista i wynosi $O(N^2)$, gdzie N to ilość wierzchołków w grafie. Algorytm jest
+jednak uruchamiany N-krotnie z różnymi wierzchołkami startowymi, co pogarsza ową złożoność do $O(N^3)$.
 
 %% skomentować poprawę wyników
 
@@ -59,6 +68,8 @@ Jeżeli w powyższych metodach wszystko przebiegnie bezproblemowo, wystarczy pos
 Eulera (stopień wejściowy = 0 oraz stopień wyjściowy = 1) oraz odszukać tą ścieżkę celem podania rozwiązania.
 
 Algorytm ten jest jak widać zorientowany na dwa przypadki. %% napisać o FAILach
+
+\section{Wnioski}
 
 
 \end{document}
