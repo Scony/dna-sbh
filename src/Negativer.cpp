@@ -155,63 +155,16 @@ pair<string,int> Negativer::run()
     }
   else				// merging way
     {
-      int l = graph->getL();
-      n = graph->getCurrentN();
-      for (int k = 2; k <= 5; k++) {
-	//n = graph->getCurrentN();
-      	for (int i = 0; i < n; i++) {
-    	  for (int j = 0; j < n; j++) {
-      	    if (i == j || graph->getDistance(i, j)) {
-      	      continue;
-      	    }
-      	    if (graph->getLabel(i).compare(k, l - k - 1, graph->getLabel(j), 0, l - k - 1) == 0) {
-      	      // add "imaginary" vertex
-      	      for (int m = 1; m <= k - 2; m++) {
-      	      	string newLabel = graph->getLabel(i).substr(m, l - m) +
-      	      	                  graph->getLabel(j).substr(k - 1, m);
-      	      	//cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
-      	      	graph->addVertex(newLabel);
-      	      }
-      	    }
-    	  }
-      	}
-      }
-      n = graph->getCurrentN();
-      for (int i = 0; i < n; i++) {
-    	for (int j = 0; j < n; j++) {
-      	  if (i == j || graph->getDistance(i, j)) {
-      	    continue;
-      	  }
-      	  if (graph->getLabel(i).compare(1, l - 2, graph->getLabel(j), 0, l - 2) == 0) {
-      	    // add "imaginary" edge
-      	    graph->setDistance(i, j, 1);
-      	  }
-    	}
-      }
-      //for (int k = 2; k <= 5; k++) {
-      //	for (int i = 0; i < n; i++) {
-      //    for (int j = 0; j < n; j++) {
-      //	    if (i == j || graph->getDistance(i, j)) {
-      //	      continue;
-      //	    }
-      //	    if (graph->getLabel(i).compare(k, l - 1 - k, graph->getLabel(j), 0, l - 1 - k) == 0) {
-      //	      // add "imaginary" edge
-      //	      graph->setDistance(i, j, 1);
-      //	    }
-      //    }
-      //	}
-      //}
-      int newNDisjoints = countDisjoints();
+      int newNDisjoints = merge(in, out);
       cout << "nDisjoints before/after: " << nDisjoints  << "/" << newNDisjoints << endl;
       cout << "currentN = " << graph->getCurrentN() << endl;
-      //return fail;
-      //return run();
     }
 
   // printInOut();
 
   // finally find euler path
 
+  n = graph->getCurrentN();
   int start = -1;
   for(int i = 0; i < n; i++)	// look for entry point IN/OUT = 0/1
     if(in[i] == 0 && out[i] == 1)
@@ -309,6 +262,133 @@ int Negativer::countDisjoints()
       }
 
   return djs;
+}
+
+int Negativer::merge(int in[], int out[])
+{
+  int l = graph->getL();
+  int n = graph->getCurrentN();
+  int nDisjoints = countDisjoints();
+  for (int shift = 1; shift <= 6; shift++) {
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+
+      	if (i == j || graph->getDistance(i, j)) {
+      	  continue;
+      	}
+	// only 1/0 and 0/1
+	if (! (in[i] == 1 && out[i] == 0 && in[j] == 0 && out[j] == 1) ) {
+	  continue;
+	}
+
+      	  if (graph->getLabel(i).compare(shift, l - shift - 1,
+      	            graph->getLabel(j), 0, l - shift - 1) == 0) {
+
+      	    vector<int> newVertexes;
+      	    int prev = i;
+      	    for (int m = 1; m <= shift - 2; m++) { // only for shift >= 3
+      	      // add "imaginary" vertex
+      	      string newLabel = graph->getLabel(i).substr(m, l - m) +
+      	      	graph->getLabel(j).substr(shift - 1, m);
+      	      //cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
+      	      int newV = graph->addVertex(newLabel);
+      	      if (newV == graph->getCurrentN() - 1) { // new vertex
+      	      	newVertexes.push_back(newV);
+      	      }
+	      // connect with edge
+	      graph->setDistance(prev, newV, 1); 
+	      prev = newV;
+      	    }
+	    graph->setDistance(prev, j, 1);
+
+	    int newNDisjoints = countDisjoints();
+	    if (nDisjoints <= newNDisjoints) {
+	      //remove
+      	      int prev = i;
+      	      for (int v = 0; v < newVertexes.size(); v++) {
+      	      	int newV = newVertexes[v];
+	      	graph->setDistance(prev, newV, 0); // remove edge
+	      	prev = newV;
+      	      }
+	      graph->setDistance(prev, j, 0);
+      	      for (int v = newVertexes.size() - 1; v >= 0; v--) {
+      	      	int newV = newVertexes[v];
+      	      	graph->removeVertex(newV);
+      	      }
+      	      newVertexes.clear();
+
+	    } else {
+	      out[i]++;
+	      in[j]++;
+	      nDisjoints = newNDisjoints;
+	      if (nDisjoints == 1) {
+	      	return 1;
+	      }
+	    }
+
+      	  }
+
+      }
+    }
+
+  }
+  return nDisjoints;
+}
+
+int Negativer::naiveMerge()
+{
+  int l = graph->getL();
+  int n = graph->getCurrentN();
+  for (int k = 2; k <= 5; k++) {
+    //n = graph->getCurrentN();
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+      	if (i == j || graph->getDistance(i, j)) {
+      	  continue;
+      	}
+      	if (graph->getLabel(i).compare(k, l - k - 1,
+      	           graph->getLabel(j), 0, l - k - 1) == 0) {
+      	  // add "imaginary" vertex
+      	  for (int m = 1; m <= k - 2; m++) {
+      	    string newLabel = graph->getLabel(i).substr(m, l - m) +
+      	      graph->getLabel(j).substr(k - 1, m);
+      	    //cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
+      	    graph->addVertex(newLabel);
+      	  }
+      	}
+      }
+    }
+  }
+  n = graph->getCurrentN();
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      if (i == j || graph->getDistance(i, j)) {
+      	continue;
+      }
+      if (graph->getLabel(i).compare(1, l - 2, graph->getLabel(j), 0, l - 2) == 0) {
+      	// add "imaginary" edge
+      	graph->setDistance(i, j, 1);
+      }
+    }
+  }
+  //for (int k = 2; k <= 5; k++) {
+  //	for (int i = 0; i < n; i++) {
+  //    for (int j = 0; j < n; j++) {
+  //	    if (i == j || graph->getDistance(i, j)) {
+  //	      continue;
+  //	    }
+  //	    if (graph->getLabel(i).compare(k, l - 1 - k, graph->getLabel(j), 0, l - 1 - k) == 0) {
+  //	      // add "imaginary" edge
+  //	      graph->setDistance(i, j, 1);
+  //	    }
+  //    }
+  //	}
+  //}
+  int newNDisjoints = countDisjoints();
+  return newNDisjoints;
+  //return fail;
+  //return run();
 }
 
 void Negativer::printInOut()

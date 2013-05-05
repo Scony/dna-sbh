@@ -9,6 +9,8 @@
 class Negativer
 {
   Graph * graph;
+  int merge(int in[], int out[]);
+  int naiveMerge();
 
 public:
   Negativer(Graph * graph);

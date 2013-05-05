@@ -36,6 +36,7 @@ public:
   std::string getLabel(int a);
   int getIndex(std::string label);
   int addVertex(std::string label); // also returns index of vertex
+  void removeVertex(int index);
   void addEdge(int a, int b, int weight);
   bool inOriginal(int a, int b);
   void originalPop(int a, int b);

@@ -94,6 +94,13 @@ int Graph::addVertex(string label)
   return newIndex;
 }
 
+void Graph::removeVertex(int index)
+{
+  vLabel.erase(vLabel.begin() + index);
+  vLabelMap.erase(getLabel(index));
+  currentN--;
+}
+
 void Graph::addEdge(int a, int b, int weight)
 {
   if (0 <= a && a < currentN && 0 <= b && b < currentN) {
