@@ -153,7 +153,6 @@ pair<string,int> Negativer::run()
     {
       int newNDisjoints = merge(in, out);
       cout << "nDisjoints before/after: " << nDisjoints  << "/" << newNDisjoints << endl;
-      cout << "currentN = " << graph->getCurrentN() << endl;
     }
 
   // finally find euler path
@@ -284,16 +283,17 @@ int Negativer::merge(int in[], int out[])
       	  continue;
       	}
 
+      	// check if labels are compatible
       	if (graph->getLabel(i).compare(shift, l - shift - 1,
 				       graph->getLabel(j), 0, l - shift - 1) == 0) {
 
+      	  // try to connect i and j
       	  vector<int> newVertexes;
       	  int prev = i;
       	  for (int m = 1; m <= shift - 2; m++) { // only for shift >= 3
       	    // add "imaginary" vertex
       	    string newLabel = graph->getLabel(i).substr(m, l - m) +
       	      graph->getLabel(j).substr(shift - 1, m);
-      	    //cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
       	    int newV = graph->addVertex(newLabel);
       	    if (newV == graph->getCurrentN() - 1) { // new vertex
       	      newVertexes.push_back(newV);
@@ -305,8 +305,8 @@ int Negativer::merge(int in[], int out[])
 	  graph->setDistance(prev, j, 1);
 
 	  int newNDisjoints = countDisjoints();
-	  if (nDisjoints <= newNDisjoints) {
-	    //remove
+	  if (nDisjoints <= newNDisjoints) { // number of disjoints didn't improve
+	    // remove edges and vertices added in this iteration
       	    int prev = i;
       	    for (int v = 0; v < newVertexes.size(); v++) {
       	      int newV = newVertexes[v];
@@ -320,7 +320,7 @@ int Negativer::merge(int in[], int out[])
       	    }
       	    newVertexes.clear();
 
-	  } else {
+	  } else { // number of disjoints improved
 	    out[i]++;
 	    in[j]++;
 	    heads[h] = -1;
@@ -347,19 +347,18 @@ int Negativer::naiveMerge()
   int l = graph->getL();
   int n = graph->getCurrentN();
   for (int k = 2; k <= 5; k++) {
-    //n = graph->getCurrentN();
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
       	if (i == j || graph->getDistance(i, j)) {
       	  continue;
       	}
+      	// check if labels are compatible
       	if (graph->getLabel(i).compare(k, l - k - 1,
 				       graph->getLabel(j), 0, l - k - 1) == 0) {
       	  // add "imaginary" vertex
       	  for (int m = 1; m <= k - 2; m++) {
       	    string newLabel = graph->getLabel(i).substr(m, l - m) +
       	      graph->getLabel(j).substr(k - 1, m);
-      	    //cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
       	    graph->addVertex(newLabel);
       	  }
       	}
@@ -378,23 +377,8 @@ int Negativer::naiveMerge()
       }
     }
   }
-  //for (int k = 2; k <= 5; k++) {
-  //	for (int i = 0; i < n; i++) {
-  //    for (int j = 0; j < n; j++) {
-  //	    if (i == j || graph->getDistance(i, j)) {
-  //	      continue;
-  //	    }
-  //	    if (graph->getLabel(i).compare(k, l - 1 - k, graph->getLabel(j), 0, l - 1 - k) == 0) {
-  //	      // add "imaginary" edge
-  //	      graph->setDistance(i, j, 1);
-  //	    }
-  //    }
-  //	}
-  //}
   int newNDisjoints = countDisjoints();
   return newNDisjoints;
-  //return fail;
-  //return run();
 }
 
 void Negativer::printInOut()
