@@ -42,7 +42,9 @@ pair<string,int> Negativer::run()
   // for(list<int>::iterator i = anomalies.begin(); i != anomalies.end(); i++)
   //   cout << *i << endl;
 
-  if(countDisjoints() == 1)	// easy way
+  int nDisjoints = countDisjoints();
+  cout << "nDisjoints = " << nDisjoints << endl;
+  if(nDisjoints == 1)	// easy way
     {
       while(!anomalies.empty())
 	{
@@ -149,7 +151,53 @@ pair<string,int> Negativer::run()
     }
   else				// merging way
     {
-      // dozens of evil code lines
+      int l = graph->getL();
+      for (int k = 2; k <= 5; k++) {
+	n = graph->getCurrentN();
+      	for (int i = 0; i < n; i++) {
+    	  for (int j = 0; j < n; j++) {
+      	    if (i == j || graph->getDistance(i, j)) {
+      	      continue;
+      	    }
+      	    if (graph->getLabel(i).compare(k, l - k - 1, graph->getLabel(j), 0, l - k - 1) == 0) {
+      	      // add "imaginary" vertex
+      	      for (int m = 1; m <= k - 2; m++) {
+      	      	string newLabel = graph->getLabel(i).substr(m, l - m) +
+      	      	                  graph->getLabel(j).substr(k - 1, m);
+      	      	cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
+      	      	graph->addVertex(newLabel);
+      	      }
+      	    }
+    	  }
+      	}
+      }
+      n = graph->getCurrentN();
+      for (int i = 0; i < n; i++) {
+    	for (int j = 0; j < n; j++) {
+      	  if (i == j || graph->getDistance(i, j)) {
+      	    continue;
+      	  }
+      	  if (graph->getLabel(i).compare(1, l - 2, graph->getLabel(j), 0, l - 2) == 0) {
+      	    // add "imaginary" edge
+      	    graph->setDistance(i, j, 1);
+      	  }
+    	}
+      }
+      //for (int k = 2; k <= 5; k++) {
+      //	for (int i = 0; i < n; i++) {
+      //    for (int j = 0; j < n; j++) {
+      //	    if (i == j || graph->getDistance(i, j)) {
+      //	      continue;
+      //	    }
+      //	    if (graph->getLabel(i).compare(k, l - 1 - k, graph->getLabel(j), 0, l - 1 - k) == 0) {
+      //	      // add "imaginary" edge
+      //	      graph->setDistance(i, j, 1);
+      //	    }
+      //    }
+      //	}
+      //}
+      int newNDisjoints = countDisjoints();
+      cout << "nDisjoints before/after: " << nDisjoints  << "/" << newNDisjoints << endl;
       return fail;
     }
 

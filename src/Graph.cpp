@@ -52,7 +52,8 @@ void Graph::readGraph(istream & in)
 
   n = vLabel.size();
 
-  int vMatrixSize = n;
+  //int vMatrixSize = n;
+  int vMatrixSize = 8000;
   if (errors < 0) {
     vMatrixSize -= errors;
   }
