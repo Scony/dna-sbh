@@ -280,13 +280,13 @@ int Negativer::merge(int in[], int out[])
     }
   }
 
-  for (int shift = 1; shift <= 6; shift++) {
+  for (int shift = 1; shift <= 7; shift++) {
     for (int t = 0; t < tails.size(); t++) {
       int i = tails[t];
       for (int h = 0; h < heads.size(); h++) {
       	int j = heads[h];
 
-      	if (i == j || graph->getDistance(i, j)) {
+      	if (i < 0 || j < 0 || i == j || graph->getDistance(i, j)) {
       	  continue;
       	}
 
@@ -329,10 +329,8 @@ int Negativer::merge(int in[], int out[])
 	  } else {
 	    out[i]++;
 	    in[j]++;
-	    heads.erase(heads.begin() + h);
-	    tails.erase(tails.begin() + t);
-	    h--;
-	    t--;
+	    heads[h] = -1;
+	    tails[t] = -1;
 
 	    nDisjoints = newNDisjoints;
 	    if (nDisjoints == 1) {
