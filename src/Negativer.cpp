@@ -2,6 +2,7 @@
 
 #include <list>
 #include <stack>
+#include <cmath>
 
 using namespace std;
 
@@ -51,7 +52,8 @@ pair<string,int> Negativer::run()
 	  int visit = anomalies.front();
 	  anomalies.pop_front();
 
-	  while(in[visit] != out[visit])
+	  int diff = abs(in[visit] - out[visit]);
+	  while(diff--/*in[visit] != out[visit]*/)
 	    {
 	      // cout << ":(" << endl;	 // TODO: prevent infinite loop
 	      if(in[visit] > out[visit]) // endouble out(s)
@@ -147,6 +149,8 @@ pair<string,int> Negativer::run()
 		    }
 		}
 	    }
+	  if(in[visit] != out[visit]) // still wrong
+	    return fail;
 	}
     }
   else				// merging way
@@ -221,7 +225,7 @@ pair<string,int> Negativer::run()
 
   exploration.push(start);
 
-  while(!exploration.empty())	// TODO: is this euler-finder works well ?
+  while(!exploration.empty())
     {
       int visit = exploration.top();
       int neighbour = -1;
@@ -246,6 +250,7 @@ pair<string,int> Negativer::run()
     }
 
   string seq = "";
+  int usage = backtrack.size() - 1;
   while(!backtrack.empty())
     {
       if(seq == "")
@@ -255,7 +260,7 @@ pair<string,int> Negativer::run()
       backtrack.pop();
     }
 
-  pair<string,int> result = pair<string,int>(seq,/*TODO: usage of spectrum*/-1);
+  pair<string,int> result = pair<string,int>(seq,usage);
 
   return result;
 }
