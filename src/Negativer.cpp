@@ -40,9 +40,6 @@ pair<string,int> Negativer::run()
 	anomalies.push_back(i);
     }
 
-  // for(list<int>::iterator i = anomalies.begin(); i != anomalies.end(); i++)
-  //   cout << *i << endl;
-
   int nDisjoints = countDisjoints();
   cout << "nDisjoints = " << nDisjoints << endl;
   if(nDisjoints == 1)	// easy way
@@ -53,9 +50,8 @@ pair<string,int> Negativer::run()
 	  anomalies.pop_front();
 
 	  int diff = abs(in[visit] - out[visit]);
-	  while(diff--/*in[visit] != out[visit]*/)
+	  while(diff--)
 	    {
-	      // cout << ":(" << endl;	 // TODO: prevent infinite loop
 	      if(in[visit] > out[visit]) // endouble out(s)
 		{
 		  list<pair<int,list<int> > > bfs;
@@ -149,7 +145,7 @@ pair<string,int> Negativer::run()
 		    }
 		}
 	    }
-	  if(in[visit] != out[visit]) // still wrong
+	  if(in[visit] != out[visit]) // if still wrong
 	    return fail;
 	}
     }
@@ -159,8 +155,6 @@ pair<string,int> Negativer::run()
       cout << "nDisjoints before/after: " << nDisjoints  << "/" << newNDisjoints << endl;
       cout << "currentN = " << graph->getCurrentN() << endl;
     }
-
-  // printInOut();
 
   // finally find euler path
 
@@ -291,7 +285,7 @@ int Negativer::merge(int in[], int out[])
       	}
 
       	if (graph->getLabel(i).compare(shift, l - shift - 1,
-      	      graph->getLabel(j), 0, l - shift - 1) == 0) {
+				       graph->getLabel(j), 0, l - shift - 1) == 0) {
 
       	  vector<int> newVertexes;
       	  int prev = i;
@@ -344,6 +338,7 @@ int Negativer::merge(int in[], int out[])
     }
 
   }
+
   return nDisjoints;
 }
 
@@ -359,7 +354,7 @@ int Negativer::naiveMerge()
       	  continue;
       	}
       	if (graph->getLabel(i).compare(k, l - k - 1,
-      	           graph->getLabel(j), 0, l - k - 1) == 0) {
+				       graph->getLabel(j), 0, l - k - 1) == 0) {
       	  // add "imaginary" vertex
       	  for (int m = 1; m <= k - 2; m++) {
       	    string newLabel = graph->getLabel(i).substr(m, l - m) +
