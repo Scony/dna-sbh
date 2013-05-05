@@ -1,6 +1,1 @@
 + positive err only
-
-FIXES:
-+ check euler finding works well
-+ add spectrum usage in Negativer::run
-+ fix infinite loop problem in Negativer::run
