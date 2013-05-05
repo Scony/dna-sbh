@@ -269,65 +269,78 @@ int Negativer::merge(int in[], int out[])
   int l = graph->getL();
   int n = graph->getCurrentN();
   int nDisjoints = countDisjoints();
-  for (int shift = 1; shift <= 6; shift++) {
 
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
+  vector<int> heads;
+  vector<int> tails;
+  for (int i = 0; i < n; i++) {
+    if (in[i] == 0 && out[i] == 1) {
+      heads.push_back(i);
+    } else if (in[i] == 1 && out[i] == 0) {
+      tails.push_back(i);
+    }
+  }
+
+  for (int shift = 1; shift <= 6; shift++) {
+    for (int t = 0; t < tails.size(); t++) {
+      int i = tails[t];
+      for (int h = 0; h < heads.size(); h++) {
+      	int j = heads[h];
 
       	if (i == j || graph->getDistance(i, j)) {
       	  continue;
       	}
-	// only 1/0 and 0/1
-	if (! (in[i] == 1 && out[i] == 0 && in[j] == 0 && out[j] == 1) ) {
-	  continue;
-	}
 
-      	  if (graph->getLabel(i).compare(shift, l - shift - 1,
-      	            graph->getLabel(j), 0, l - shift - 1) == 0) {
+      	if (graph->getLabel(i).compare(shift, l - shift - 1,
+      	      graph->getLabel(j), 0, l - shift - 1) == 0) {
 
-      	    vector<int> newVertexes;
+      	  vector<int> newVertexes;
+      	  int prev = i;
+      	  for (int m = 1; m <= shift - 2; m++) { // only for shift >= 3
+      	    // add "imaginary" vertex
+      	    string newLabel = graph->getLabel(i).substr(m, l - m) +
+      	      graph->getLabel(j).substr(shift - 1, m);
+      	    //cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
+      	    int newV = graph->addVertex(newLabel);
+      	    if (newV == graph->getCurrentN() - 1) { // new vertex
+      	      newVertexes.push_back(newV);
+      	    }
+	    // connect with edge
+	    graph->setDistance(prev, newV, 1); 
+	    prev = newV;
+      	  }
+	  graph->setDistance(prev, j, 1);
+
+	  int newNDisjoints = countDisjoints();
+	  if (nDisjoints <= newNDisjoints) {
+	    //remove
       	    int prev = i;
-      	    for (int m = 1; m <= shift - 2; m++) { // only for shift >= 3
-      	      // add "imaginary" vertex
-      	      string newLabel = graph->getLabel(i).substr(m, l - m) +
-      	      	graph->getLabel(j).substr(shift - 1, m);
-      	      //cout << graph->getLabel(i) << " " << graph->getLabel(j) << " " << newLabel << endl;
-      	      int newV = graph->addVertex(newLabel);
-      	      if (newV == graph->getCurrentN() - 1) { // new vertex
-      	      	newVertexes.push_back(newV);
-      	      }
-	      // connect with edge
-	      graph->setDistance(prev, newV, 1); 
+      	    for (int v = 0; v < newVertexes.size(); v++) {
+      	      int newV = newVertexes[v];
+	      graph->setDistance(prev, newV, 0); // remove edge
 	      prev = newV;
       	    }
-	    graph->setDistance(prev, j, 1);
+	    graph->setDistance(prev, j, 0);
+      	    for (int v = newVertexes.size() - 1; v >= 0; v--) {
+      	      int newV = newVertexes[v];
+      	      graph->removeVertex(newV);
+      	    }
+      	    newVertexes.clear();
 
-	    int newNDisjoints = countDisjoints();
-	    if (nDisjoints <= newNDisjoints) {
-	      //remove
-      	      int prev = i;
-      	      for (int v = 0; v < newVertexes.size(); v++) {
-      	      	int newV = newVertexes[v];
-	      	graph->setDistance(prev, newV, 0); // remove edge
-	      	prev = newV;
-      	      }
-	      graph->setDistance(prev, j, 0);
-      	      for (int v = newVertexes.size() - 1; v >= 0; v--) {
-      	      	int newV = newVertexes[v];
-      	      	graph->removeVertex(newV);
-      	      }
-      	      newVertexes.clear();
+	  } else {
+	    out[i]++;
+	    in[j]++;
+	    heads.erase(heads.begin() + h);
+	    tails.erase(tails.begin() + t);
+	    h--;
+	    t--;
 
-	    } else {
-	      out[i]++;
-	      in[j]++;
-	      nDisjoints = newNDisjoints;
-	      if (nDisjoints == 1) {
-	      	return 1;
-	      }
+	    nDisjoints = newNDisjoints;
+	    if (nDisjoints == 1) {
+	      return 1;
 	    }
+	  }
 
-      	  }
+      	}
 
       }
     }
