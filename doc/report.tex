@@ -8,7 +8,7 @@
 \usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm,headsep=1.2cm]{geometry}
 \usepackage{float} 
 
-\title{Sekwencjonowanie łańcuchów DNA}
+\title{\textbf{Sekwencjonowanie łańcuchów DNA}}
 \date{}
 \author{Paweł Lampe \and Jakub Szwachła}
 
@@ -20,8 +20,7 @@
 
 \section{Opis algorytmów}
 
-\subsection{Problem 3: Sekwencjonowanie łańcuchów DNA z błędami
-negatywnymii pozytywnymiymi}
+\subsection{Problem 3: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi i pozytywnymi}      %% fix a bit
 
 Dla przypadku ogólnego przygotowano prosty algorytm zachłanny. Problem
 zamodelowano w postaci grafu Łysowa, w którym każdy wierzchołek
@@ -34,8 +33,32 @@ algorytmu istnieje możliwość rozszerzania ścieżki z obu stron.
 
 %% skomentować poprawę wyników
 
-\subsection{Problem 1: Sekwencjonowanie łańcuchów DNA z błędami
-negatywnymi}
+\subsection{Problem 1: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi}
+Przypadki z błędami wyłącznie negatywnymi można wewnętrznie podzielić na dwie podgrupy:
+\begin{itemize}
+\item braki w spektrum
+\item błędy wynikające z powtórzeń
+\end{itemize}
+Z racji powyższego podziału, zaproponowana przez nas heurystyka wykonuje przed przystąpieniem do działania preprocesing.
+
+Zlicza ona mianowicie ilość spójnych składowych w grafie. Jeśli jest dokładnie jedna to pewnym jest fakt, że w grafie
+mamy do czynienia tylko i wyłącznie z błędami negatywnymi wynikającymi z powtórzeń. W przeciwnym razie, w grafie
+mogą występować dowolne błędy z podgrup wymienionych powyżej.
+
+Preprocesing wykonujemy więc celem zadecydowania jaką podjąć strategię.
+
+Jeśli mamy do czynienia z jedną spójną składową w grafie, czyli na pewno z błędami wynikającymi z powtórzeń, sytuacja jest
+stosunkowo prosta. Wystarczy zadbać aby zaszedł warunek konieczny istnienia ścieżki Eulera dla grafu skierowanego. 
+Oznacza to, że trzeba znaleźć te wierzchołki których stopień wejściowy jest różny od stopnia wyjściowego, gdzie żadna
+z tych liczb nie jest zerem. Gdy zostaną odnalezione, należy je odpowiednio ze sobą połączyć. Dokonać tego można poprzez
+wybranie dowolnego z tych wierzchołków, oraz wyszukanie komplementarnego metodą BFS.
+
+Alternatywną sytuacją jest przypadek, gdy w grafie jest więcej niż jedna spójna składowa. %% opisać IF!=1
+
+Jeżeli w powyższych metodach wszystko przebiegnie bezproblemowo, wystarczy poszukać wierzchołka początkowego dla ścieżki
+Eulera (stopień wejściowy = 0 oraz stopień wyjściowy = 1) oraz odszukać tą ścieżkę celem podania rozwiązania.
+
+Algorytm ten jest jak widać zorientowany na dwa przypadki. %% napisać o FAILach
 
 
 \end{document}
