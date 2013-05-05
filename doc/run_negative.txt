@@ -1,0 +1,177 @@
+GROUP 1
+group1/0
+ 0 -744380521 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -744380525 -1 of 0
+---------------------------------------------------------
+group1/1
+ 0 2059113879 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 2059113875 -1 of 0
+---------------------------------------------------------
+group1/2
+ 0 490689303 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 490689299 -1 of 0
+---------------------------------------------------------
+group1/3
+ 0 -934023849 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -934023853 -1 of 0
+---------------------------------------------------------
+group1/4
+ 0 -1203594089 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -1203594093 -1 of 0
+---------------------------------------------------------
+group1/5
+ 0 -466121737 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -466121741 -1 of 0
+---------------------------------------------------------
+group1/6
+ 0 731744039 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 731744035 -1 of 0
+---------------------------------------------------------
+group1/7
+ 0 -2045870649 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -2045870653 -1 of 0
+---------------------------------------------------------
+group1/8
+ 0 -1820234345 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -1820234349 -1 of 0
+---------------------------------------------------------
+group1/9
+ 0 547657911 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 547657907 -1 of 0
+---------------------------------------------------------
+group1/10
+ 0 -134985305 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -134985309 -1 of 0
+---------------------------------------------------------
+group1/11
+ 0 -1176419257 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -1176419261 -1 of 0
+---------------------------------------------------------
+group1/12
+ 0 -1308429593 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -1308429597 -1 of 0
+---------------------------------------------------------
+group1/13
+ 0 -529034617 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -529034621 -1 of 0
+---------------------------------------------------------
+group1/14
+ 0 186255319 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 186255315 -1 of 0
+---------------------------------------------------------
+group1/15
+ 0 1672610807 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 1672610803 -1 of 0
+---------------------------------------------------------
+group1/16
+ 0 1359911159 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 1359911155 -1 of 0
+---------------------------------------------------------
+group1/17
+ 0 781761303 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 781761299 -1 of 0
+---------------------------------------------------------
+group1/18
+ 0 -406438329 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -406438333 -1 of 0
+---------------------------------------------------------
+group1/19
+ 0 717809863 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 717809859 -1 of 0
+---------------------------------------------------------
+group1/20
+ 0 56771559 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 56771555 -1 of 0
+---------------------------------------------------------
+group1/21
+ 0 195662903 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 195662899 -1 of 0
+---------------------------------------------------------
+group1/22
+ 0 -2022976489 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -2022976493 -1 of 0
+---------------------------------------------------------
+group1/23
+ 0 -2103619305 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -2103619309 -1 of 0
+---------------------------------------------------------
+
+GROUP 2
+group2/0
+ 0 -1196550569 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -1196550573 -1 of 0
+---------------------------------------------------------
+group2/1
+ 0 -512334441 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -512334445 -1 of 0
+---------------------------------------------------------
+group2/2
+ 0 1252572871 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 1252572867 -1 of 0
+---------------------------------------------------------
+group2/3
+ 0 -447328313 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -447328317 -1 of 0
+---------------------------------------------------------
+group2/4
+ 0 -518717481 -1 of 0
+nDisjoints = 0
+nDisjoints before/after: 0/0
+FAIL 4 -518717485 -1 of 0
+---------------------------------------------------------
