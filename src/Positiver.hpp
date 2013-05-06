@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <utility>
+#include <list>
 
 #include "Graph.hpp"
 
@@ -13,8 +14,8 @@ public:
   Positiver(Graph * graph);
   ~Positiver();
   std::pair<std::string,int> run();
-  std::list<int> getLargestDisjoint();
-  std::list<pair<int,int> > dfs(int left,std::list<pair<int,int> > hash);
+  std::list<std::list<int> > getDisjoints();
+  std::list<std::pair<int,int> > dfs(int v, int left, std::list<std::pair<int,int> > hash);
 };
 
 #endif

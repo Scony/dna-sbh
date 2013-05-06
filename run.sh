@@ -6,12 +6,12 @@ for i in $(ls tests/${1} | sort -n); do
   done
 }
 
-echo GROUP 1
-runtests group1
+# echo GROUP 1
+# runtests group1
 
-echo
-echo GROUP 2
-runtests group2
+# echo
+# echo GROUP 2
+# runtests group2
 
 echo
 echo GROUP 3
@@ -21,6 +21,6 @@ echo
 echo GROUP 4
 runtests group4
 
-echo
-echo OWN
-runtests group4
+# echo
+# echo OWN
+# runtests group4

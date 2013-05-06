@@ -8,6 +8,7 @@
 #include "TwoWayClimber.hpp"
 #include "TopSort.hpp"
 #include "Negativer.hpp"
+#include "Positiver.hpp"
 
 using namespace std;
 
@@ -32,12 +33,12 @@ int main(int argc, char ** argv)
   in2.close();
 
   TwoWayClimber twc(&lg);
-  Negativer n(&g);
+  Positiver p(&g);
 
   pair<string,int> result = twc.run();
   cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
        << " " << result.second << " of " << lg.getN() << endl;
-  result = n.run();
+  result = p.run();
   cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
        << " " << result.second << " of " << lg.getN() << endl;
   cout << "---------------------------------------------------------\n";
