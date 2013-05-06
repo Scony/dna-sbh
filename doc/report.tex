@@ -42,6 +42,26 @@ jednak uruchamiany N-krotnie z różnymi wierzchołkami startowymi, co pogarsza 
 
 %% skomentować poprawę wyników
 
+\subsection{Problem 2: Sekwencjonowanie łańcuchów DNA z błędami pozytywnymi}
+Instancje z błędami wyłącznie pozytywnymi, to zdecydowanie najprostsze przypadki z punktu widzenia złożoności problemu.
+W przypadku występowania takich błędów, w grafie Pevznera musi istnieć przynajmniej jedna ścieżka przechodząca przez
+przynajmniej $n-l+1$ krawędzi, gdzie $n$ to długość sekwencji oryginalnej a $l$ to długość słowa. W praktyce oznacza to tyle,
+że algorytm powinien zwrócić przynajmniej jedno rozwiązanie długości $n$ przy użyciu $n-l+1$ słów.
+
+Zaproponowana przez nas heurystyka działa trój-etapowo:
+\begin{itemize}
+\item Na początku szuka wszystkich spójnych składowych i zapamiętuje zbiory wierzchołków do nich przynależnych
+\item Dalej, iterując po spójnych składowych, szuka na tyle dużych, aby możliwe było w ogóle pomieszczenie tam ścieżki
+o długości $n-l+1$ krawędzi. Jeżeli taka spójna składowa zostanie odnaleziona, wewnątrz niej rozpoczyna się seria
+wyszukiwań DFS
+\item Jako wierzchołki startowe dla DFS wybierane są tylko te które mają zerowy stopień wejściowy oraz niezerowy
+stopień wyjściowy. W przypadku gdy takich nie ma, wybierane są kolejno wszystkie wierzchołki.
+
+W przypadku znalezienia rozwiązania, jest ono niezwłocznie zwracane, przez co przerwaniu ulegają wszystkie iteracje.
+Nie ratuje to jednak w żaden sposób złożoności, którą jest $O(V*E^2)$, gdzie $V$ to ilość wierzchołków a $E$ to ilość
+krawędzi w grafie Pevznera. W optymistycznym przypadku jednak algorytm działa błyskawicznie, z racji, iż graf jest
+bardzo rzadki.
+
 \subsection{Problem 1: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi}
 Przypadki z błędami wyłącznie negatywnymi można wewnętrznie podzielić na dwie podgrupy:
 \begin{itemize}
