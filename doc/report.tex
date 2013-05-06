@@ -25,7 +25,7 @@ pozytywnych w danych wejściowych.
 
 \section{Opis algorytmów}
 
-\subsection{Problem 3: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi i pozytywnymi}      %% fix a bit
+\subsection{Problem 3: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi i pozytywnymi}
 
 Dla przypadku ogólnego przygotowaliśmy prosty algorytm zachłanny. Problem zamodelowaliśmy w postaci grafu Łysowa,
 w którym każdy wierzchołek odpowiada jednemu słowu ze spektrum. Wagi krawędzi odpowiadają przesunięciu etykiet
@@ -46,8 +46,6 @@ Optymalizacja przyniosła oczekiwane efekty. W zasadzie dla każdej grupy instan
 
 Złożoność czasowa samego algorytmu jest oczywista i wynosi $O(V^2)$, gdzie $V$ to ilość wierzchołków w grafie. Algorytm jest
 jednak uruchamiany $V$-krotnie z różnymi wierzchołkami startowymi, co pogarsza ową złożoność do $O(V^3)$.
-
-%% skomentować poprawę wyników
 
 \subsection{Problem 1: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi}
 Przypadki z błędami wyłącznie negatywnymi można wewnętrznie podzielić na dwie podgrupy:
@@ -111,9 +109,8 @@ bardzo rzadki.
 
 \section{Wyniki}
 
-
 \begin{table}[H]
-\caption{Porównaniu algorytmów dla problemów 3 i 1}
+\caption{Porównanie algorytmów dla problemów 3 i 1}
 \begin{tabular}{|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|}
 \hline
 \multicolumn{1}{|l|}{P3} & \multicolumn{1}{l|}{P1} &
@@ -157,7 +154,7 @@ bardzo rzadki.
 \end{table}
 
 \begin{table}[H]
-\caption{Porównaniu algorytmów dla problemów 3 i 2}
+\caption{Porównanie algorytmów dla problemów 3 i 2}
 \begin{tabular}{|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|}
 \hline
 \multicolumn{1}{|l|}{P3} & \multicolumn{1}{l|}{P2} &
@@ -213,8 +210,8 @@ okazała się wędrówką poprzez labirynt naszpikowany permutacjami. Gdyby nasz
 postaci radzącej sobie bezbłędnie, konieczna była by złożoność wykładnicza.
 
 Nie podważa to jednak słuszności napisanej przez nas heurystyki specjalizowanej. Jak pokazują wyniki, działa ona niemal
-binarnie; albo daje wynik oscylujący w okolicach optimum, albo kończy się totalną klapą. Na szczęście, dla większości
-instancji działa ona bardzo dobrze. Przeważa też sumarycznie nad algorytmem ogólnym.
+binarnie; albo daje wynik oscylujący w okolicach optimum, albo kończy się całkowitą porażką. Na szczęście, dla
+większości instancji działa ona bardzo dobrze. Przeważa też sumarycznie nad algorytmem ogólnym.
 
 Algorytm ogólny jednak, mimo iż wielokrotnie popełnia małe błędy, średnio radzi sobie bardzo dobrze. Wynika to na pewno
 z faktu, iż dla grafu Łysowa oraz zbudowanej nad nim strategii zachłannej, korzystnie jest, gdy graf jest możliwe jak
@@ -225,15 +222,16 @@ najrzadszy.
 Kolejne porównanie dotyczy heurystyki ogólnego przeznaczenia oraz heurystyki specjalizowanej dla sekwencjonowania
 z błędami pozytywnymi.
 
-W tym przypadku sytuacja jest oczywista. Superwydajny algorytm specjalizowany rozwiązuje wszystkie instancje do optimum.
-Można by go nazwać algorytmem dokładnym, gdyby nie fakt, że czasami może on owszem użyć odpowiednią ilość słów ze spektrum,
-zwrócić ciąg o oczekiwanej długości, jednak może się okazać, że ów ciąg nie jest tym czego szukamy. Wynika to z faktu, iż
-niektóre instancje z błędami pozytywnymi mogą być niejednoznaczne.
+W tym przypadku sytuacja jest oczywista. Algorytm specjalizowany rozwiązuje wszystkie instancje do optimum. Osiąga też
+lepsze wyniki pod kątem czasu działania.
+%%Można by go nazwać algorytmem dokładnym, gdyby nie fakt, że czasami może on owszem użyć odpowiednią ilość słów ze spektrum,
+%%zwrócić ciąg o oczekiwanej długości, jednak może się okazać, że ów ciąg nie jest tym czego szukamy. Wynika to z faktu, iż
+%%niektóre instancje z błędami pozytywnymi mogą być niejednoznaczne.
 
-Szczęśliwie jednak, w zadanych instancjach, nie zdarzyła się żadna niejednoznaczna.
+%%Szczęśliwie jednak, w zadanych instancjach, nie zdarzyła się żadna niejednoznaczna.
 
-Jeśli chodzi o algorytm ogólnego przeznaczenia, widać wyraźnie, że jest on dość odporny na pozytywne błędy losowe. Sytuacja
-jednak diametralnie się zmienia, gdy mamy do czynienia z przekłamaniami na końcach nukleotydów + gdy graf robi się dość gęsty.
-Kłuci się to bowiem z naszą strategią zachłanną.
+Jeśli chodzi o algorytm ogólnego przeznaczenia, widać wyraźnie, że jest on dość odporny na pozytywne błędy losowe.
+Sytuacja jednak diametralnie się zmienia, gdy mamy do czynienia z przekłamaniami na końcach nukleotydów oraz gdy graf
+robi się dość gęsty. Kłóci się to bowiem z naszą strategią zachłanną.
 
 \end{document}
