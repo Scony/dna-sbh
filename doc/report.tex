@@ -32,8 +32,8 @@ lub dopóki nie odwiedzimy wszystkich wierzchołków.
 
 Z racji na zadziwiająco dobre wyniki postanowiliśmy z algorytmu wycisnąć jeszcze więcej. W toku optymalizacji powyższe
 przeszukiwanie jednokierunkowe wzbogaciliśmy o dodatkowy kierunek. Postanowiliśmy rozważyć nie tylko następniki ostatnio
-odwiedzonego wierzchołka (ogona łańcucha Hamiltona), lecz także poprzedniki głowy łańcucha Hamiltona. Tak oto obecnie
-algorytm jest niejako rozszerzającym się łańcuchem Hamiltona, przy czym rozszerzanie następuje od głowy oraz od ogona
+odwiedzonego wierzchołka (ogona łańcucha), lecz także poprzedniki głowy łańcucha. Tak oto obecnie
+algorytm jest niejako rozszerzającym się łańcuchem, przy czym rozszerzanie następuje od głowy oraz od ogona
 wybierając najkrótszą krawędź niezależnie od strony. Co więcej algorytm uruchamiany jest oddzielnie dla każdego
 wierzchołka w roli startowego, po czym wybierany jest najlepszy ze zbioru wyników.
 
@@ -68,6 +68,50 @@ Jeżeli w powyższych metodach wszystko przebiegnie bezproblemowo, wystarczy pos
 Eulera (stopień wejściowy = 0 oraz stopień wyjściowy = 1) oraz odszukać tą ścieżkę celem podania rozwiązania.
 
 Algorytm ten jest jak widać zorientowany na dwa przypadki. %% napisać o FAILach
+
+\section{Wyniki}
+
+
+\begin{table}[H]
+\caption{}
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\multicolumn{1}{|l|}{P3} & \multicolumn{1}{l|}{P1} &
+\multicolumn{1}{l|}{$|S|$} & \multicolumn{1}{l|}{P3 odl. od $|S|$} &
+\multicolumn{1}{l|}{P1 odl. od $|S|$} \\ \hline
+160 & 160 & 160 & \textbf{0} & \textbf{0} \\ \hline
+120 & 120 & 120 & \textbf{0} & \textbf{0} \\ \hline
+160 & 139 & 160 & \textbf{0} & 21 \\ \hline
+117 & 120 & 120 & 3 & \textbf{0} \\ \hline
+160 & 160 & 160 & \textbf{0} & \textbf{0} \\ \hline
+117 & 120 & 120 & 3 & \textbf{0} \\ \hline
+240 & 240 & 240 & \textbf{0} & \textbf{0} \\ \hline
+178 & 180 & 180 & 2 & \textbf{0} \\ \hline
+235 & 240 & 240 & 5 & \textbf{0} \\ \hline
+178 & 180 & 180 & 2 & \textbf{0} \\ \hline
+240 & 240 & 240 & \textbf{0} & \textbf{0} \\ \hline
+176 & 111 & 180 & 4 & 69 \\ \hline
+316 & 271 & 320 & 4 & 49 \\ \hline
+230 & 73 & 240 & 10 & 167 \\ \hline
+318 & 320 & 320 & 2 & \textbf{0} \\ \hline
+229 & 240 & 240 & 11 & \textbf{0} \\ \hline
+312 & 117 & 320 & 8 & 203 \\ \hline
+229 & 18 & 240 & 11 & 222 \\ \hline
+392 & 399 & 400 & 8 & 1 \\ \hline
+296 & 293 & 300 & 4 & 7 \\ \hline
+400 & 400 & 400 & \textbf{0} & \textbf{0} \\ \hline
+296 & 60 & 300 & 4 & 240 \\ \hline
+391 & 397 & 400 & 9 & 3 \\ \hline
+300 & 297 & 300 & \textbf{0} & 3 \\ \hline
+\hline
+493 & 498 & 498 & 5 & \textbf{0} \\ \hline
+488 & 492 & 492 & 4 & \textbf{0} \\ \hline
+488 & 488 & 488 & \textbf{0} & \textbf{0} \\ \hline
+475 & 482 & 482 & 7 & \textbf{0} \\ \hline
+468 & 0 & 468 & \textbf{0} & 468 \\ \hline
+\end{tabular}
+\label{}
+\end{table}
 
 \section{Wnioski}
 
