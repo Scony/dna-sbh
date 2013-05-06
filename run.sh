@@ -2,7 +2,7 @@
 
 runtests() {
 for i in $(ls tests/${1} | sort -n); do
-    echo ${1}/$i; ./general.out $tests/${1}/$i;
+    echo ${1}/$i; ./general.out tests/${1}/$i;
   done
 }
 
