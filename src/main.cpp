@@ -27,21 +27,22 @@ int main(int argc, char ** argv)
   ifstream in2(argv[1]);
 
   LineGraph lg(in1);
-  Graph g(in2);
+  //Graph g(in2);
 
   in1.close();
   in2.close();
 
   TwoWayClimber twc(&lg);
-  Positiver p(&g);
+  //Negativer n(&g);
 
-  pair<string,int> result = twc.run();
-  cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
-       << " " << result.second << " of " << lg.getN() << endl;
-  result = p.run();
-  cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
-       << " " << result.second << " of " << lg.getN() << endl;
-  cout << "---------------------------------------------------------\n";
+  pair<string,int> result;
+  result = twc.run();
+  //cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
+  //     << " " << result.second << " of " << lg.getN() << endl;
+  //result = n.run();
+  //cout << result.first << " " << result.first.length() << " " << lg.rate(result.first)
+  //     << " " << result.second << " of " << lg.getN() << endl;
+  //cout << "---------------------------------------------------------\n";
 
   return 0;
 }
