@@ -13,8 +13,8 @@ public:
   Positiver(Graph * graph);
   ~Positiver();
   std::pair<std::string,int> run();
-  int countDisjoints();
-  void printInOut();
+  std::list<int> getLargestDisjoint();
+  std::list<pair<int,int> > dfs(int left,std::list<pair<int,int> > hash);
 };
 
 #endif
