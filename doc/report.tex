@@ -67,7 +67,9 @@ Jeśli mamy do czynienia z jedną spójną składową w grafie, czyli na pewno z
 stosunkowo prosta. Wystarczy zadbać aby zaszedł warunek konieczny istnienia ścieżki Eulera dla grafu skierowanego. 
 Oznacza to, że trzeba znaleźć te wierzchołki których stopień wejściowy jest różny od stopnia wyjściowego, gdzie żadna
 z tych liczb nie jest zerem. Gdy zostaną odnalezione, należy je odpowiednio ze sobą połączyć. Dokonać tego można poprzez
-wybranie dowolnego z tych wierzchołków, oraz wyszukanie komplementarnego metodą BFS.
+wybranie dowolnego z tych wierzchołków, oraz wyszukanie komplementarnego metodą BFS. Jakkolwiek by to dobrze nie brzmiało,
+sposoby połączeń są reprezentowalne poprzez permutacje. Właśnie aby uniknąć złożoności wykładniczej, szukamy najbliższych
+połączeń metodą BFS godząc się niejako na to, że algorytm może zwrócić wynik sub-optymalny lub nie zwrócić go w ogóle.
 
 Alternatywną sytuacją jest przypadek, gdy w grafie jest więcej niż jedna spójna składowa. W takim przypadku
 szukamy wierzchołków będących końcówkami mniejszych odcinków sekwencji w spektrum. Bierzemy pod uwagę wierzchołki o
@@ -82,7 +84,9 @@ Ta heurystyczna metoda w wielu przypadkach pozwala uzyskać graf spójny.
 Jeżeli w powyższych metodach wszystko przebiegnie bezproblemowo, wystarczy poszukać wierzchołka początkowego dla ścieżki
 Eulera (stopień wejściowy = 0 oraz stopień wyjściowy = 1) oraz odszukać tą ścieżkę celem podania rozwiązania.
 
-Algorytm ten jest jak widać zorientowany na dwa przypadki. %% napisać o FAILach
+Algorytm ten jest jak widać zorientowany na dwa przypadki. Złożoność obliczeniową szacujemy jednak na taką samą.
+Jest to $O(V^3)$ gdzie $V$ to ilość wierzchołków w grafie Pevznera. Nie można jednak zapominać, że algorytm w zależności
+od ilości spójnych składowych na wejściu charakteryzuje się inną stałą złożoności.
 
 \subsection{Problem 2: Sekwencjonowanie łańcuchów DNA z błędami pozytywnymi}
 Instancje z błędami wyłącznie pozytywnymi, to zdecydowanie najprostsze przypadki z punktu widzenia złożoności problemu.
