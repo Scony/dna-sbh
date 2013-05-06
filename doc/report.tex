@@ -192,6 +192,40 @@ końcach oligonukleotydów} \\ \hline
 
 \subsection{Sekwencjonowanie łańcuchów DNA z błędami negatywnymi}
 
+Pierwsze porównanie dotyczy heurystyki ogólnego przeznaczenia oraz heurystyki specjalizowanej dla sekwencjonowania
+z błędami negatywnymi.
+
+Wydawać by się mogło, że w tym jak i każdym innym przypadku heurystyka specjalizowana będzie działała zawsze lepiej
+od algorytmu ogólnego przeznaczenia. Specyfika problemu braków w spektrum jest jednak na tyle głęboka, że (jak pokazuje
+tabela 1) algorytm przeznaczony specjalnie do radzenia sobie z błędami negatywnymi nie zawsze daje lepsze wyniki.
+Co więcej, dla niektórych instancji, nasz algorytm nie był w ogóle w stanie podać wyniku.
+
+Niestety nawet pomimo ciekawego założenia na temat błędów wynikających z powtórzeń, budowa specjalizowanej heurystyki
+okazała się wędrówką poprzez labirynt naszpikowany permutacjami. Gdyby nasza heurystyka miała zostać rozwinięta do
+postaci radzącej sobie bezbłędnie, konieczna była by złożoność wykładnicza.
+
+Nie podważa to jednak słuszności napisanej przez nas heurystyki specjalizowanej. Jak pokazują wyniki, działa ona niemal
+binarnie; albo daje wynik oscylujący w okolicach optimum, albo kończy się totalną klapą. Na szczęście, dla większości
+instancji działa ona bardzo dobrze. Przeważa też sumarycznie nad algorytmem ogólnym.
+
+Algorytm ogólny jednak, mimo iż wielokrotnie popełnia małe błędy, średnio radzi sobie bardzo dobrze. Wynika to na pewno
+z faktu, iż dla grafu Łysowa oraz zbudowanej nad nim strategii zachłannej, korzystnie jest, gdy graf jest możliwe jak
+najrzadszy.
+
 \subsection{Sekwencjonowanie łańcuchów DNA z błędami pozytywnymi}
+
+Kolejne porównanie dotyczy heurystyki ogólnego przeznaczenia oraz heurystyki specjalizowanej dla sekwencjonowania
+z błędami pozytywnymi.
+
+W tym przypadku sytuacja jest oczywista. Superwydajny algorytm specjalizowany rozwiązuje wszystkie instancje do optimum.
+Można by go nazwać algorytmem dokładnym, gdyby nie fakt, że czasami może on owszem użyć odpowiednią ilość słów ze spektrum,
+zwrócić ciąg o oczekiwanej długości, jednak może się okazać, że ów ciąg nie jest tym czego szukamy. Wynika to z faktu, iż
+niektóre instancje z błędami pozytywnymi mogą być niejednoznaczne.
+
+Szczęśliwie jednak, w zadanych instancjach, nie zdarzyła się żadna niejednoznaczna.
+
+Jeśli chodzi o algorytm ogólnego przeznaczenia, widać wyraźnie, że jest on dość odporny na pozytywne błędy losowe. Sytuacja
+jednak diametralnie się zmienia, gdy mamy do czynienia z przekłamaniami na końcach nukleotydów + gdy graf robi się dość gęsty.
+Kłuci się to bowiem z naszą strategią zachłanną.
 
 \end{document}
