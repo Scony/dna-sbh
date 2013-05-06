@@ -18,6 +18,11 @@
 
 \section{Wstęp}
 
+Przedmiotem niniejszej pracy są trzy heurystyki działające w czasie wielomianowym i rozwiązujące po jednym z problemów
+wymienionych w poniższych sekcjach. Wszystkie heurystyki dotyczą sekwencjonowania łańcuchów DNA, z wykorzystaniem
+standardowych bibliotek oligonukleotydów o stałej długości i przy założeniu obecności odpowiednio błędów negatywnych lub
+pozytywnych w danych wejściowych.
+
 \section{Opis algorytmów}
 
 \subsection{Problem 3: Sekwencjonowanie łańcuchów DNA z błędami negatywnymi i pozytywnymi}      %% fix a bit
@@ -37,8 +42,10 @@ algorytm jest niejako rozszerzającym się łańcuchem, przy czym rozszerzanie n
 wybierając najkrótszą krawędź niezależnie od strony. Co więcej algorytm uruchamiany jest oddzielnie dla każdego
 wierzchołka w roli startowego, po czym wybierany jest najlepszy ze zbioru wyników.
 
-Złożoność czasowa samego algorytmu jest oczywista i wynosi $O(N^2)$, gdzie N to ilość wierzchołków w grafie. Algorytm jest
-jednak uruchamiany N-krotnie z różnymi wierzchołkami startowymi, co pogarsza ową złożoność do $O(N^3)$.
+Optymalizacja przyniosła oczekiwane efekty. W zasadzie dla każdej grupy instancji wyniki polepszyły się średnio o 10\%.
+
+Złożoność czasowa samego algorytmu jest oczywista i wynosi $O(V^2)$, gdzie $V$ to ilość wierzchołków w grafie. Algorytm jest
+jednak uruchamiany $V$-krotnie z różnymi wierzchołkami startowymi, co pogarsza ową złożoność do $O(V^3)$.
 
 %% skomentować poprawę wyników
 
@@ -175,5 +182,8 @@ końcach oligonukleotydów} \\ \hline
 
 \section{Wnioski}
 
+\subsection{Sekwencjonowanie łańcuchów DNA z błędami negatywnymi}
+
+\subsection{Sekwencjonowanie łańcuchów DNA z błędami pozytywnymi}
 
 \end{document}
