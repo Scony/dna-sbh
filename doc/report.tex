@@ -5,7 +5,7 @@
 \usepackage{graphicx,color}
 \usepackage{url} 
 \usepackage{hyperref}
-\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm,headsep=1.2cm]{geometry}
+\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm,headsep=1.8cm]{geometry}
 \usepackage{float} 
 
 \title{\textbf{Sekwencjonowanie łańcuchów DNA}}
@@ -110,80 +110,84 @@ bardzo rzadki.
 
 \begin{table}[H]
 \caption{Porównaniu algorytmów dla problemów 3 i 1}
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|}
 \hline
 \multicolumn{1}{|l|}{P3} & \multicolumn{1}{l|}{P1} &
 \multicolumn{1}{l|}{optimum} & \multicolumn{1}{l|}{P3 odl. od opt.} &
-\multicolumn{1}{l|}{P1 odl. od opt.} \\ \hline
-\multicolumn{5}{|c|}{Błędy negatywne losowe} \\ \hline
-160 & 160 & 160 & \textbf{0} & \textbf{0} \\ \hline
-120 & 120 & 120 & \textbf{0} & \textbf{0} \\ \hline
-160 & 139 & 160 & \textbf{0} & 21 \\ \hline
-117 & 120 & 120 & 3 & \textbf{0} \\ \hline
-160 & 160 & 160 & \textbf{0} & \textbf{0} \\ \hline
-117 & 120 & 120 & 3 & \textbf{0} \\ \hline
-240 & 240 & 240 & \textbf{0} & \textbf{0} \\ \hline
-178 & 180 & 180 & 2 & \textbf{0} \\ \hline
-235 & 240 & 240 & 5 & \textbf{0} \\ \hline
-178 & 180 & 180 & 2 & \textbf{0} \\ \hline
-240 & 240 & 240 & \textbf{0} & \textbf{0} \\ \hline
-176 & 111 & 180 & 4 & 69 \\ \hline
-316 & 271 & 320 & 4 & 49 \\ \hline
-230 & 73 & 240 & 10 & 167 \\ \hline
-318 & 320 & 320 & 2 & \textbf{0} \\ \hline
-229 & 240 & 240 & 11 & \textbf{0} \\ \hline
-312 & 117 & 320 & 8 & 203 \\ \hline
-229 & 18 & 240 & 11 & 222 \\ \hline
-392 & 399 & 400 & 8 & 1 \\ \hline
-296 & 293 & 300 & 4 & 7 \\ \hline
-400 & 400 & 400 & \textbf{0} & \textbf{0} \\ \hline
-296 & 60 & 300 & 4 & 240 \\ \hline
-391 & 397 & 400 & 9 & 3 \\ \hline
-300 & 297 & 300 & \textbf{0} & 3 \\ \hline
-\multicolumn{5}{|c|}{Błędy negatywne wynikające z powtórzeń} \\ \hline
-493 & 498 & 498 & 5 & \textbf{0} \\ \hline
-488 & 492 & 492 & 4 & \textbf{0} \\ \hline
-488 & 488 & 488 & \textbf{0} & \textbf{0} \\ \hline
-475 & 482 & 482 & 7 & \textbf{0} \\ \hline
-468 & 0 & 468 & \textbf{0} & 468 \\ \hline
+\multicolumn{1}{l|}{P1 odl. od opt.} &
+\multicolumn{1}{l|}{P3 czas [s]} &
+\multicolumn{1}{l|}{P1 czas [s]} \\ \hline
+\multicolumn{7}{|c|}{Błędy negatywne losowe} \\ \hline
+160 & 160 & 160 & \textbf{0} & \textbf{0} & 0,083 & 0,114 \\ \hline
+120 & 120 & 120 & \textbf{0} & \textbf{0} & 0,038 & 0,116 \\ \hline
+160 & 139 & 160 & \textbf{0} & 21 & 0,077 & 0,111 \\ \hline
+117 & 120 & 120 & 3 & \textbf{0} & 0,031 & 0,120 \\ \hline
+160 & 160 & 160 & \textbf{0} & \textbf{0} & 0,079 & 0,113 \\ \hline
+117 & 120 & 120 & 3 & \textbf{0} & 0,035 & 0,115 \\ \hline
+240 & 240 & 240 & \textbf{0} & \textbf{0} & 0,266 & 0,149 \\ \hline
+178 & 180 & 180 & 2 & \textbf{0} & 0,112 & 0,154 \\ \hline
+235 & 240 & 240 & 5 & \textbf{0} & 0,255 & 0,153 \\ \hline
+178 & 180 & 180 & 2 & \textbf{0} & 0,112 & 0,163 \\ \hline
+240 & 240 & 240 & \textbf{0} & \textbf{0} & 0,257 & 0,156 \\ \hline
+176 & 111 & 180 & 4 & 69 & 0,103 & 0,155 \\ \hline
+316 & 271 & 320 & 4 & 49 & 0,593 & 0,230 \\ \hline
+230 & 73 & 240 & 10 & 167 & 0,240 & 0,235 \\ \hline
+318 & 320 & 320 & 2 & \textbf{0} & 0,569 & 0,233 \\ \hline
+229 & 240 & 240 & 11 & \textbf{0} & 0,246 & 0,253 \\ \hline
+312 & 117 & 320 & 8 & 203 & 0,573 & 0,229 \\ \hline
+229 & 18 & 240 & 11 & 222 & 0,233 & 0,252 \\ \hline
+392 & 399 & 400 & 8 & 1 & 1,208 & 0,359 \\ \hline
+296 & 293 & 300 & 4 & 7 & 0,516 & 0,438 \\ \hline
+400 & 400 & 400 & \textbf{0} & \textbf{0} & 1,146 & 0,363 \\ \hline
+296 & 60 & 300 & 4 & 240 & 0,491 & 0,397 \\ \hline
+391 & 397 & 400 & 9 & 3 & 1,172 & 0,351 \\ \hline
+300 & 297 & 300 & \textbf{0} & 3 & 0,470 & 0,432 \\ \hline
+\multicolumn{7}{|c|}{Błędy negatywne wynikające z powtórzeń} \\ \hline
+493 & 498 & 498 & 5 & \textbf{0} & 2,422 & 0,108 \\ \hline
+488 & 492 & 492 & 4 & \textbf{0} & 2,301 & 0,109 \\ \hline
+488 & 488 & 488 & \textbf{0} & \textbf{0} & 2,299 & 0,107 \\ \hline
+475 & 482 & 482 & 7 & \textbf{0} & 2,100 & 0,107 \\ \hline
+468 & 0 & 468 & \textbf{0} & 468 & 1,935 & 0,103 \\ \hline
 \end{tabular}
 \label{}
 \end{table}
 
 \begin{table}[H]
 \caption{Porównaniu algorytmów dla problemów 3 i 2}
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|p{1.6cm}|}
 \hline
 \multicolumn{1}{|l|}{P3} & \multicolumn{1}{l|}{P2} &
 \multicolumn{1}{l|}{optimum} & \multicolumn{1}{l|}{P3 odl. od opt.} &
-\multicolumn{1}{l|}{P2 odl. od opt.} \\ \hline
-\multicolumn{5}{|c|}{Błędy pozytywne losowe} \\ \hline
-200 & 200 & 200 & \textbf{0} & \textbf{0} \\ \hline
-200 & 200 & 200 & \textbf{0} & \textbf{0} \\ \hline
-200 & 200 & 200 & \textbf{0} & \textbf{0} \\ \hline
-300 & 300 & 300 & \textbf{0} & \textbf{0} \\ \hline
-300 & 300 & 300 & \textbf{0} & \textbf{0} \\ \hline
-300 & 300 & 300 & \textbf{0} & \textbf{0} \\ \hline
-400 & 400 & 400 & \textbf{0} & \textbf{0} \\ \hline
-400 & 400 & 400 & \textbf{0} & \textbf{0} \\ \hline
-386 & 400 & 400 & 14 & \textbf{0} \\ \hline
-500 & 500 & 500 & \textbf{0} & \textbf{0} \\ \hline
-496 & 500 & 500 & 4 & \textbf{0} \\ \hline
-500 & 500 & 500 & \textbf{0} & \textbf{0} \\ \hline
-\multicolumn{5}{|c|}{Błędy pozytywne, przekłamania na
+\multicolumn{1}{l|}{P2 odl. od opt.} &
+\multicolumn{1}{l|}{P3 czas [s]} &
+\multicolumn{1}{l|}{P2 czas [s]} \\ \hline
+\multicolumn{7}{|c|}{Błędy pozytywne losowe} \\ \hline
+200 & 200 & 200 & \textbf{0} & \textbf{0} & 0,292 & 0,112 \\ \hline
+200 & 200 & 200 & \textbf{0} & \textbf{0} & 0,264 & 0,116 \\ \hline
+200 & 200 & 200 & \textbf{0} & \textbf{0} & 0,284 & 0,113 \\ \hline
+300 & 300 & 300 & \textbf{0} & \textbf{0} & 0,983 & 0,126 \\ \hline
+300 & 300 & 300 & \textbf{0} & \textbf{0} & 0,895 & 0,127 \\ \hline
+300 & 300 & 300 & \textbf{0} & \textbf{0} & 0,927 & 0,126 \\ \hline
+400 & 400 & 400 & \textbf{0} & \textbf{0} & 2,303 & 0,218 \\ \hline
+400 & 400 & 400 & \textbf{0} & \textbf{0} & 2,396 & 0,152 \\ \hline
+386 & 400 & 400 & 14 & \textbf{0} & 2,205 & 0,178 \\ \hline
+500 & 500 & 500 & \textbf{0} & \textbf{0} & 4,878 & 0,187 \\ \hline
+496 & 500 & 500 & 4 & \textbf{0} & 4,659 & 0,231 \\ \hline
+500 & 500 & 500 & \textbf{0} & \textbf{0} & 4,952 & 0,186 \\ \hline
+\multicolumn{7}{|c|}{Błędy pozytywne, przekłamania na
 końcach oligonukleotydów} \\ \hline
-171 & 200 & 200 & 29 & \textbf{0} \\ \hline
-179 & 200 & 200 & 21 & \textbf{0} \\ \hline
-178 & 200 & 200 & 22 & \textbf{0} \\ \hline
-270 & 300 & 300 & 30 & \textbf{0} \\ \hline
-267 & 300 & 300 & 33 & \textbf{0} \\ \hline
-269 & 300 & 300 & 31 & \textbf{0} \\ \hline
-353 & 400 & 400 & 47 & \textbf{0} \\ \hline
-334 & 400 & 400 & 66 & \textbf{0} \\ \hline
-361 & 400 & 400 & 39 & \textbf{0} \\ \hline
-435 & 500 & 500 & 65 & \textbf{0} \\ \hline
-434 & 500 & 500 & 66 & \textbf{0} \\ \hline
-429 & 500 & 500 & 71 & \textbf{0} \\ \hline
+171 & 200 & 200 & 29 & \textbf{0} & 0,139 & 0,161 \\ \hline
+179 & 200 & 200 & 21 & \textbf{0} & 0,149 & 0,176 \\ \hline
+178 & 200 & 200 & 22 & \textbf{0} & 0,157 & 0,141 \\ \hline
+270 & 300 & 300 & 30 & \textbf{0} & 0,507 & 0,233 \\ \hline
+267 & 300 & 300 & 33 & \textbf{0} & 0,535 & 0,284 \\ \hline
+269 & 300 & 300 & 31 & \textbf{0} & 0,543 & 0,370 \\ \hline
+353 & 400 & 400 & 47 & \textbf{0} & 1,318 & 0,981 \\ \hline
+334 & 400 & 400 & 66 & \textbf{0} & 1,213 & 0,458 \\ \hline
+361 & 400 & 400 & 39 & \textbf{0} & 1,319 & 0,429 \\ \hline
+435 & 500 & 500 & 65 & \textbf{0} & 2,381 & 1,086 \\ \hline
+434 & 500 & 500 & 66 & \textbf{0} & 2,408 & 0,875 \\ \hline
+429 & 500 & 500 & 71 & \textbf{0} & 2,480 & 0,997 \\ \hline
 \end{tabular}
 \label{}
 \end{table}
