@@ -73,12 +73,13 @@ Algorytm ten jest jak widać zorientowany na dwa przypadki. %% napisać o FAILac
 
 
 \begin{table}[H]
-\caption{}
+\caption{Porównaniu algorytmów dla problemów 3 i 1}
 \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
 \hline
 \multicolumn{1}{|l|}{P3} & \multicolumn{1}{l|}{P1} &
-\multicolumn{1}{l|}{$|S|$} & \multicolumn{1}{l|}{P3 odl. od $|S|$} &
-\multicolumn{1}{l|}{P1 odl. od $|S|$} \\ \hline
+\multicolumn{1}{l|}{optimum} & \multicolumn{1}{l|}{P3 odl. od opt.} &
+\multicolumn{1}{l|}{P1 odl. od opt.} \\ \hline
+\multicolumn{5}{|c|}{Błędy negatywne losowe} \\ \hline
 160 & 160 & 160 & \textbf{0} & \textbf{0} \\ \hline
 120 & 120 & 120 & \textbf{0} & \textbf{0} \\ \hline
 160 & 139 & 160 & \textbf{0} & 21 \\ \hline
@@ -103,12 +104,50 @@ Algorytm ten jest jak widać zorientowany na dwa przypadki. %% napisać o FAILac
 296 & 60 & 300 & 4 & 240 \\ \hline
 391 & 397 & 400 & 9 & 3 \\ \hline
 300 & 297 & 300 & \textbf{0} & 3 \\ \hline
-\hline
+\multicolumn{5}{|c|}{Błędy negatywne wynikające z powtórzeń} \\ \hline
 493 & 498 & 498 & 5 & \textbf{0} \\ \hline
 488 & 492 & 492 & 4 & \textbf{0} \\ \hline
 488 & 488 & 488 & \textbf{0} & \textbf{0} \\ \hline
 475 & 482 & 482 & 7 & \textbf{0} \\ \hline
 468 & 0 & 468 & \textbf{0} & 468 \\ \hline
+\end{tabular}
+\label{}
+\end{table}
+
+\begin{table}[H]
+\caption{Porównaniu algorytmów dla problemów 3 i 2}
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\multicolumn{1}{|l|}{P3} & \multicolumn{1}{l|}{P2} &
+\multicolumn{1}{l|}{optimum} & \multicolumn{1}{l|}{P3 odl. od opt.} &
+\multicolumn{1}{l|}{P2 odl. od opt.} \\ \hline
+\multicolumn{5}{|c|}{Błędy pozytywne losowe} \\ \hline
+200 & 200 & 200 & \textbf{0} & \textbf{0} \\ \hline
+200 & 200 & 200 & \textbf{0} & \textbf{0} \\ \hline
+200 & 200 & 200 & \textbf{0} & \textbf{0} \\ \hline
+300 & 300 & 300 & \textbf{0} & \textbf{0} \\ \hline
+300 & 300 & 300 & \textbf{0} & \textbf{0} \\ \hline
+300 & 300 & 300 & \textbf{0} & \textbf{0} \\ \hline
+400 & 400 & 400 & \textbf{0} & \textbf{0} \\ \hline
+400 & 400 & 400 & \textbf{0} & \textbf{0} \\ \hline
+386 & 400 & 400 & 14 & \textbf{0} \\ \hline
+500 & 500 & 500 & \textbf{0} & \textbf{0} \\ \hline
+496 & 500 & 500 & 4 & \textbf{0} \\ \hline
+500 & 500 & 500 & \textbf{0} & \textbf{0} \\ \hline
+\multicolumn{5}{|c|}{Błędy pozytywne, przekłamania na
+końcach oligonukleotydów} \\ \hline
+171 & 200 & 200 & 29 & \textbf{0} \\ \hline
+179 & 200 & 200 & 21 & \textbf{0} \\ \hline
+178 & 200 & 200 & 22 & \textbf{0} \\ \hline
+270 & 300 & 300 & 30 & \textbf{0} \\ \hline
+267 & 300 & 300 & 33 & \textbf{0} \\ \hline
+269 & 300 & 300 & 31 & \textbf{0} \\ \hline
+353 & 400 & 400 & 47 & \textbf{0} \\ \hline
+334 & 400 & 400 & 66 & \textbf{0} \\ \hline
+361 & 400 & 400 & 39 & \textbf{0} \\ \hline
+435 & 500 & 500 & 65 & \textbf{0} \\ \hline
+434 & 500 & 500 & 66 & \textbf{0} \\ \hline
+429 & 500 & 500 & 71 & \textbf{0} \\ \hline
 \end{tabular}
 \label{}
 \end{table}
