@@ -62,7 +62,15 @@ Oznacza to, że trzeba znaleźć te wierzchołki których stopień wejściowy je
 z tych liczb nie jest zerem. Gdy zostaną odnalezione, należy je odpowiednio ze sobą połączyć. Dokonać tego można poprzez
 wybranie dowolnego z tych wierzchołków, oraz wyszukanie komplementarnego metodą BFS.
 
-Alternatywną sytuacją jest przypadek, gdy w grafie jest więcej niż jedna spójna składowa. %% opisać IF!=1
+Alternatywną sytuacją jest przypadek, gdy w grafie jest więcej niż jedna spójna składowa. W takim przypadku
+szukamy wierzchołków będących końcówkami mniejszych odcinków sekwencji w spektrum. Bierzemy pod uwagę wierzchołki o
+stopniu wejściowym 0 i stopniu  wyjściowym 1 lub na odwrót. Komplementarne pary końcowych wierzchołków próbujemy
+łączyć krawędzią, lub serią nowych wierzchołków połączonych krawędziami (ograniczamy się do połączeń o szerokości od 1
+do 7 nowych krawędzi). Aby nowe połączenie zostało zaakceptowane, etykiety łączonych wierzchołków muszą oczywiście się
+zgadzać (z dokładnością do przesunięcia od 1 do 7). Dodatkowo sprawdzamy, czy nowe połączenie łączy dwie różne
+spójne składowe, a więc czy zbliża nas do celu uspójnienia grafu.
+Ta heurystyczna metoda w wielu przypadkach pozwala uzyskać graf spójny.
+
 
 Jeżeli w powyższych metodach wszystko przebiegnie bezproblemowo, wystarczy poszukać wierzchołka początkowego dla ścieżki
 Eulera (stopień wejściowy = 0 oraz stopień wyjściowy = 1) oraz odszukać tą ścieżkę celem podania rozwiązania.
