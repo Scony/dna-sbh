@@ -75,11 +75,11 @@ pair<string,int> Positiver::run()
 		  {
 		    string seq = "";
 		    int edges = re.size();
-		    for(list<pair<int,int> >::iterator j = re.begin(); j != re.end(); j++)
+		    for(list<pair<int,int> >::iterator k = re.begin(); k != re.end(); k++)
 		      if(seq == "")
-			seq = graph->getLabel(j->first) + graph->getLabel(j->second).substr(graph->getLabel(j->second).length()-1);
+			seq = graph->getLabel(k->first) + graph->getLabel(k->second).substr(graph->getLabel(k->second).length()-1);
 		      else
-			seq += graph->getLabel(j->second).substr(graph->getLabel(j->second).length()-1);
+			seq += graph->getLabel(k->second).substr(graph->getLabel(k->second).length()-1);
 
 		    return pair<string,int>(seq,edges);
 		  }
