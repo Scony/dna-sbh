@@ -2,7 +2,7 @@
 
 runtests() {
 for i in $(ls tests/${1} | sort -n); do
-    echo ${1}/$i; time ./general.out tests/${1}/$i;
+    echo ${1}/$i; ./negative.out tests/${1}/$i;
   done
 }
 
@@ -13,13 +13,13 @@ echo
 echo GROUP 2
 runtests group2
 
-echo
-echo GROUP 3
-runtests group3
+# echo
+# echo GROUP 3
+# runtests group3
 
-echo
-echo GROUP 4
-runtests group4
+# echo
+# echo GROUP 4
+# runtests group4
 
 # echo
 # echo OWN
