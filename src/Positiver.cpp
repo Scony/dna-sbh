@@ -1,8 +1,7 @@
 #include "Positiver.hpp"
 
-// #include <list>
 #include <stack>
-#include <cmath>
+// #include <cmath>
 
 using namespace std;
 
@@ -18,24 +17,10 @@ Positiver::~Positiver()
 pair<string,int> Positiver::run()
 {
   pair<string,int> fail = pair<string,int>("FAIL",-1);
-
-  // get disjoints
-  list<list<int> > djs = getDisjoints();
-  list<int> biggest = djs.front(); // fix to use iter
-  for(list<list<int> >::iterator i = djs.begin(); i != djs.end(); i++)
-    if(i->size() > biggest.size())
-      biggest = *i;		// =||=
-
-  cout << biggest.size() << endl;
-
-  cout << graph->getP() - graph->getL() + 1 << endl;
-
-  // count path len
   int pathLen = graph->getP() - graph->getL() + 1;
-
-  // foreach big disjoint find entrys and try dfs 'em
-  // for now: biggest
   int n = graph->getCurrentN();
+
+  //count in/out
   int in[n];
   int out[n];
   for(int i = 0; i < n; i++)
@@ -49,34 +34,58 @@ pair<string,int> Positiver::run()
 	}
     }
 
-  stack<int> tryIt;
-  for(list<int>::iterator i = biggest.begin(); i != biggest.end(); i++)
-    if(in[*i] < out[*i])
-      tryIt.push(*i);
+  // get disjoints and dfs inside
+  list<list<int> > djs = getDisjoints();
+  for(list<list<int> >::iterator i = djs.begin(); i != djs.end(); i++)
+    if(i->size() - 1 >= pathLen)
+      {
+	stack<int> tryIt;
+	for(list<int>::iterator j = i->begin(); j != i->end(); j++)
+	  if(in[*j] < out[*j])
+	    tryIt.push(*j);
 
-  if(tryIt.size() > 0)
-    {
-      while(!tryIt.empty())
-	{
-	  int visit = tryIt.top();
-	  tryIt.pop();
-	  // list<pair<int,int> > Positiver::dfs(int v, int left, list<pair<int,int> > hash)
-	  list<pair<int,int> > re = dfs(visit,pathLen,list<pair<int,int> >());
-	  if(re.front().first != -1)
-	    {
-	      cout << "OK !!!" << re.size() << endl;
-	      string seq = "";
-	      int edges = re.size();
-	      for(list<pair<int,int> >::iterator i = re.begin(); i != re.end(); i++)
-		if(seq == "")
-		  seq = graph->getLabel(i->first) + graph->getLabel(i->second).substr(graph->getLabel(i->second).length()-1);
-		else
-		  seq += graph->getLabel(i->second).substr(graph->getLabel(i->second).length()-1);
+	if(tryIt.size() > 0)
+	  {
+	    while(!tryIt.empty())
+	      {
+		int visit = tryIt.top();
+		tryIt.pop();
+		list<pair<int,int> > re = dfs(visit,pathLen,list<pair<int,int> >());
+		if(re.front().first != -1)
+		  {
+		    string seq = "";
+		    int edges = re.size();
+		    for(list<pair<int,int> >::iterator j = re.begin(); j != re.end(); j++)
+		      if(seq == "")
+			seq = graph->getLabel(j->first) + graph->getLabel(j->second).substr(graph->getLabel(j->second).length()-1);
+		      else
+			seq += graph->getLabel(j->second).substr(graph->getLabel(j->second).length()-1);
 
-	      return pair<string,int>(seq,edges);
-	    }
-	}
-    }
+		    return pair<string,int>(seq,edges);
+		  }
+	      }
+	  }
+	else
+	  {
+	    for(list<int>::iterator j = i->begin(); j != i->end(); j++)
+	      {
+		int visit = *j;
+		list<pair<int,int> > re = dfs(visit,pathLen,list<pair<int,int> >());
+		if(re.front().first != -1)
+		  {
+		    string seq = "";
+		    int edges = re.size();
+		    for(list<pair<int,int> >::iterator j = re.begin(); j != re.end(); j++)
+		      if(seq == "")
+			seq = graph->getLabel(j->first) + graph->getLabel(j->second).substr(graph->getLabel(j->second).length()-1);
+		      else
+			seq += graph->getLabel(j->second).substr(graph->getLabel(j->second).length()-1);
+
+		    return pair<string,int>(seq,edges);
+		  }
+	      }
+	  }
+      }
 
   return fail;
 }
