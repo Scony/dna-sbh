@@ -1,12 +1,10 @@
-EXE=general.out
-
-all: $(EXE)
-
-$(EXE): src
+all: src
 	make -C src
-	cp src/a.out $(EXE)
+	cp src/positive.out .
+	cp src/negative.out .
 
 clean: 
 	make -C src clean
-	rm -f $(EXE) *~
-.PHONY: all, clean
+	rm -f positive.out negative.out *~
+
+.PHONY: all clean
